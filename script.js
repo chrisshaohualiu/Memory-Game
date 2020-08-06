@@ -32,24 +32,38 @@ let display = () => {
     place.setAttribute("data-symbol", gameBoard[index].symbol);
     place.innerText = gameBoard[index].symbol;
     place.addEventListener("click", (e) => {
-      let card = {
-        index: e.target.getAttribute("data-index"),
-        symbol: e.target.getAttribute("data-symbol"),
-      };
-      faceUpCards.push(card);
-      if (faceUpCards.length === 1) {
-        e.target.classList.add("yellow");
-      } else {
-        placesDiv[faceUpCards[0].index].classList.remove("yellow");
-        if (faceUpCards[0].symbol === faceUpCards[1].symbol) {
-          placesDiv[faceUpCards[0].index].classList.add("green");
-          placesDiv[faceUpCards[1].index].classList.add("green");
+      if (
+        (faceUpCards.length === 1 && e.target != faceUpCards[0]) ||
+        faceUpCards.length === 0
+      ) {
+        faceUpCards.push(e.target);
+        if (faceUpCards.length === 1) {
+          e.target.classList.add("yellow");
         } else {
-          // if above condition not met, change color class to red
+          faceUpCards[0].classList.remove("yellow");
+          if (
+            faceUpCards[0].getAttribute("data-symbol") ===
+            faceUpCards[1].getAttribute("data-symbol")
+          ) {
+            faceUpCards[0].classList.add("green");
+            faceUpCards[1].classList.add("green");
+            setTimeout(() => {
+              faceUpCards[0].classList.remove("green");
+              faceUpCards[1].classList.remove("green");
+              faceUpCards = [];
+            }, 1000);
+          } else {
+            faceUpCards[0].classList.add("red");
+            faceUpCards[1].classList.add("red");
+            setTimeout(() => {
+              faceUpCards[0].classList.remove("red");
+              faceUpCards[1].classList.remove("red");
+              faceUpCards = [];
+            }, 1000);
+          }
         }
-        faceUpCards = [];
+        console.log(faceUpCards);
       }
-      console.log(faceUpCards);
     });
   });
 };
