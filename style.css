@@ -18,7 +18,34 @@ h2 {
   height: 100px;
   border: 1px black solid;
   text-align: center;
+  /* transition: transform 1s;
+  transform-style: preserve-3d; */
 }
+
+/* .places div {
+  display: block;
+  height: 100%;
+  width: 100%;
+  line-height: 260px;
+  color: white;
+  text-align: center;
+  font-weight: bold;
+  font-size: 140px;
+  position: absolute;
+  backface-visibility: hidden;
+}
+
+.places .front {
+  background: red;
+}
+.places .back {
+  background: blue;
+
+  transform: rotateY(180deg);
+}
+.places .flipped {
+  transform: rotateY(180deg);
+} */
 
 .yellow {
   background-color: yellow;
