@@ -6,7 +6,7 @@ let startBTN = document.querySelector(".start-btn");
 
 let resetBTN = document.querySelector(".reset-btn");
 
-let pauseBTN = document.querySelector(".pause");
+// let pauseBTN = document.querySelector(".pause");
 
 function shuffle(a) {
   for (let i = a.length - 1; i > 0; i--) {
@@ -73,9 +73,9 @@ const handler = (e) => {
   console.log(faceUpCards);
 };
 
-pauseBTN.addEventListener("click", () => {
-  clearTimeout(t);
-});
+// pauseBTN.addEventListener("click", () => {
+//   clearTimeout(t);
+// });
 
 const display = () => {
   for (let i = 0; i < 16; i++) {
