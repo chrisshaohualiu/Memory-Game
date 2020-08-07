@@ -1,7 +1,10 @@
 "use strict";
 
 let gameBoardDiv = document.querySelector(".game-board");
-let gameBoard = [];
+
+let startBTN = document.querySelector(".start-btn")
+
+let resetBTN = document.querySelector(".reset-btn")
 
 function shuffle(a) {
 	for (let i = a.length - 1; i > 0; i--) {
@@ -13,9 +16,16 @@ function shuffle(a) {
 
 let randomArray = [0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7];
 
+let imageArray = ["animals/cat_PNG50534.png", "animals/goat_PNG13148.png", "animals/goose_PNG39.png", "animals/hyena_PNG3.png", "animals/monkey_PNG18736.png", "animals/octopus_PNG30.png", "animals/peacock_PNG29.png", "animals/raccoon_PNG16975.png"];
+
 shuffle(randomArray);
 
 let faceUpCards = [];
+
+// let testImage = document.createElement("img");
+// testImage.setAttribute("src", "animals/cat_PNG50534.png");
+// testImage.classList.add("card-image");
+// gameBoardDiv.append(testImage);
 
 const handler = (e) => {
 	if (
@@ -54,13 +64,15 @@ const display = () => {
 		let newCard = document.createElement("div");
 		let front = document.createElement("div");
 		let back = document.createElement("div");
-		let image = document.createElement("div");
+		let image = document.createElement("img");
+		image.classList.add("card-image");
+		image.setAttribute("src", imageArray[randomArray[i]]);
 		back.append(image);
 		newCard.classList.add("card");
 		front.classList.add("front");
 		back.classList.add("back");
 		cardContainer.classList.add("card-container");
-		back.innerText = randomArray[i];
+		// back.innerText = randomArray[i];
 		newCard.setAttribute("data-symbol", randomArray[i]);
 		newCard.setAttribute("data-index", i);
 		newCard.append(front);
@@ -71,6 +83,23 @@ const display = () => {
 	}
 };
 
-display();
+let startHandler = () => {
+	display();
+	startBTN.removeEventListener("click", startHandler);
+}
+
+startBTN.addEventListener("click", startHandler);
+
+resetBTN.addEventListener("click", () => {
+	let cardContainerDivs = document.querySelectorAll(".card-container");
+	cardContainerDivs.forEach((item) => {
+		item.remove();
+	});
+	shuffle(randomArray);
+	faceUpCards = [];
+	startBTN.addEventListener("click", startHandler);
+});
+
+
 
 console.log(gameBoardDiv);

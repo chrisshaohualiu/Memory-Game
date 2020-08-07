@@ -32,6 +32,11 @@ h2 {
   transform-style: preserve-3d;
 }
 
+.card-image {
+  height: 100px;
+  width: 100px;
+}
+
 .flipped {
   transform: rotateY(180deg);
 }
@@ -47,6 +52,7 @@ h2 {
 .front {
   background: red;
 }
+
 .back {
   background: blue;
   color: white;
@@ -57,6 +63,10 @@ h2 {
 .out {
   display: none;
 }
+
+.start-btn {}
+
+.reset-btn {}
 
 .yellow {
   background-color: yellow;
@@ -69,3 +79,5 @@ h2 {
 .red {
   background-color: red;
 }
+
+/* desktop version */
