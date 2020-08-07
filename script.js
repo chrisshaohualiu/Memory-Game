@@ -17,6 +17,34 @@ shuffle(randomArray);
 
 let faceUpCards = [];
 
+const handler = (e) => {
+  if (!e.target.classList.contains("flipped") && faceUpCards.length < 2) {
+    faceUpCards.push(e.currentTarget);
+    e.currentTarget.classList.add("flipped");
+    if (faceUpCards.length === 2) {
+      if (
+        faceUpCards[0].getAttribute("data-symbol") ===
+        faceUpCards[1].getAttribute("data-symbol")
+      ) {
+        setTimeout(() => {
+          faceUpCards[0].removeEventListener("click", handler);
+          faceUpCards[1].removeEventListener("click", handler);
+          faceUpCards[0].classList.add("out");
+          faceUpCards[1].classList.add("out");
+          faceUpCards = [];
+        }, 1000);
+      } else {
+        setTimeout(() => {
+          faceUpCards[0].classList.remove("flipped");
+          faceUpCards[1].classList.remove("flipped");
+          faceUpCards = [];
+        }, 1000);
+      }
+    }
+  }
+  console.log(faceUpCards);
+};
+
 for (let i = 0; i < 16; i++) {
   let newCard = document.createElement("div");
   let front = document.createElement("div");
@@ -29,21 +57,7 @@ for (let i = 0; i < 16; i++) {
   newCard.setAttribute("data-index", i);
   newCard.append(front);
   newCard.append(back);
-  newCard.addEventListener("click", (e) => {
-    if (!newCard.classList.contains("flipped")) {
-      faceUpCards.push(newCard);
-      newCard.classList.add("flipped");
-      if (faceUpCards.length === 2) {
-        if (
-          faceUpCards[0].getAttribute("data-symbol") ===
-          faceUpCards[1].getAttribute("data-symbol")
-        ) {
-          console.log("hello");
-        }
-      }
-    }
-    console.log(faceUpCards);
-  });
+  newCard.addEventListener("click", handler);
   gameBoardDiv.append(newCard);
   gameBoard.push(newCard);
 }

@@ -15,6 +15,7 @@ h2 {
 
 .card {
   position: relative;
+  display: block;
   margin: 10px;
   width: 100px;
   height: 100px;
@@ -46,6 +47,10 @@ h2 {
   color: white;
   font-size: 50px;
   transform: rotateY(180deg);
+}
+
+.out {
+  display: none;
 }
 
 .yellow {
