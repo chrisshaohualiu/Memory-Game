@@ -29,6 +29,8 @@ const handler = (e) => {
         setTimeout(() => {
           faceUpCards[0].removeEventListener("click", handler);
           faceUpCards[1].removeEventListener("click", handler);
+          faceUpCards[0].classList.add("out");
+          faceUpCards[1].classList.add("out");
           faceUpCards = [];
         }, 1000);
       } else {
