@@ -6,6 +6,8 @@ let startBTN = document.querySelector(".start-btn");
 
 let resetBTN = document.querySelector(".reset-btn");
 
+let pauseBTN = document.querySelector(".pause");
+
 function shuffle(a) {
   for (let i = a.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
@@ -54,6 +56,10 @@ const handler = (e) => {
           faceUpCards[0].classList.add("out");
           faceUpCards[1].classList.add("out");
           faceUpCards = [];
+          let outDivs = document.querySelectorAll(".out");
+          if (outDivs.length === 16) {
+            clearTimeout(t);
+          }
         }, 1000);
       } else {
         setTimeout(() => {
@@ -66,6 +72,10 @@ const handler = (e) => {
   }
   console.log(faceUpCards);
 };
+
+pauseBTN.addEventListener("click", () => {
+  clearTimeout(t);
+});
 
 const display = () => {
   for (let i = 0; i < 16; i++) {
@@ -91,10 +101,10 @@ const display = () => {
     gameBoardDiv.append(cardContainer);
   }
 };
-
+let t;
 let startHandler = () => {
   display();
-  setInterval(setTime, 1000);
+  t = setInterval(setTime, 1000);
   startBTN.removeEventListener("click", startHandler);
 };
 
