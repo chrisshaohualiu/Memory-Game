@@ -13,6 +13,11 @@ h2 {
   flex-wrap: wrap;
 }
 
+.card-container {
+  height: 120px;
+  width: 120px;
+}
+
 .card {
   position: relative;
   display: block;

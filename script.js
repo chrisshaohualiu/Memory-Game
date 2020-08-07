@@ -46,6 +46,7 @@ const handler = (e) => {
 };
 
 for (let i = 0; i < 16; i++) {
+  let cardContainer = document.createElement("div");
   let newCard = document.createElement("div");
   let front = document.createElement("div");
   let back = document.createElement("div");
@@ -58,9 +59,13 @@ for (let i = 0; i < 16; i++) {
   newCard.append(front);
   newCard.append(back);
   newCard.addEventListener("click", handler);
-  gameBoardDiv.append(newCard);
+  cardContainer.append(newCard);
+  cardContainer.classList.add("card-container");
+  gameBoardDiv.append(cardContainer);
   gameBoard.push(newCard);
 }
+
+console.log(gameBoardDiv);
 
 /*
 let cardDiv = document.querySelectorAll(".card");
