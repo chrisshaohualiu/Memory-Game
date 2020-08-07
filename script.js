@@ -30,23 +30,19 @@ for (let i = 0; i < 16; i++) {
   newCard.append(front);
   newCard.append(back);
   newCard.addEventListener("click", (e) => {
-    newCard.classList.toggle("flipped");
-    // if (
-    //   (faceUpCards.length === 1 &&
-    //     faceUpCards[0].getAttribute("data-index") !=
-    //       e.target.getAttribute("data-index")) ||
-    //   faceUpCards.length === 0
-    // ) {
-    //   faceUpCards.push(newCard);
-    //   if (faceUpCards.length === 2) {
-    //     if (
-    //       faceUpCards[0].getAttribute("data-symbol") ===
-    //       faceUpCards[1].getAttribute("data-symbol")
-    //     ) {
-    //     }
-    //   }
-    // }
-    // console.log(faceUpCards);
+    if (!newCard.classList.contains("flipped")) {
+      faceUpCards.push(newCard);
+      newCard.classList.add("flipped");
+      if (faceUpCards.length === 2) {
+        if (
+          faceUpCards[0].getAttribute("data-symbol") ===
+          faceUpCards[1].getAttribute("data-symbol")
+        ) {
+          console.log("hello");
+        }
+      }
+    }
+    console.log(faceUpCards);
   });
   gameBoardDiv.append(newCard);
   gameBoard.push(newCard);
