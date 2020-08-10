@@ -78,32 +78,40 @@ const handler = (e) => {
 // });
 
 const display = () => {
-  for (let i = 0; i < 16; i++) {
-    let cardContainer = document.createElement("div");
-    let newCard = document.createElement("div");
-    let front = document.createElement("div");
-    let back = document.createElement("div");
-    let image = document.createElement("img");
-    image.classList.add("card-image");
-    image.setAttribute("src", imageArray[randomArray[i]]);
-    back.append(image);
-    newCard.classList.add("card");
-    front.classList.add("front");
-    back.classList.add("back");
-    cardContainer.classList.add("card-container");
-    // back.innerText = randomArray[i];
-    newCard.setAttribute("data-symbol", randomArray[i]);
-    newCard.setAttribute("data-index", i);
-    newCard.append(front);
-    newCard.append(back);
-    newCard.addEventListener("click", handler);
-    cardContainer.append(newCard);
-    gameBoardDiv.append(cardContainer);
+  for (let i = 0; i < 4; i++) {
+    let row = document.createElement("div");
+    row.classList.add("row");
+    for (let j = 0; j < 4; j++) {
+      let cardContainer = document.createElement("div");
+      let newCard = document.createElement("div");
+      let front = document.createElement("div");
+      let back = document.createElement("div");
+      let image = document.createElement("img");
+      image.classList.add("card-image");
+      image.setAttribute("src", imageArray[randomArray[j + i * 4]]);
+      back.append(image);
+      newCard.classList.add("card");
+      front.classList.add("front");
+      back.classList.add("back");
+      cardContainer.classList.add("card-container");
+      newCard.setAttribute("data-symbol", randomArray[j + i * 4]);
+      newCard.setAttribute("data-index", i);
+      newCard.append(front);
+      newCard.append(back);
+      newCard.addEventListener("click", handler);
+      cardContainer.append(newCard);
+      row.append(cardContainer);
+    }
+    gameBoardDiv.append(row);
   }
 };
+
 let t;
 let startHandler = () => {
   display();
+  secondsLabel.innerHTML = "00";
+  minutesLabel.innerHTML = "00";
+  totalSeconds = 0;
   t = setInterval(setTime, 1000);
   startBTN.removeEventListener("click", startHandler);
 };
@@ -111,10 +119,11 @@ let startHandler = () => {
 startBTN.addEventListener("click", startHandler);
 
 resetBTN.addEventListener("click", () => {
-  let cardContainerDivs = document.querySelectorAll(".card-container");
-  cardContainerDivs.forEach((item) => {
+  let rowDivs = document.querySelectorAll(".row");
+  rowDivs.forEach((item) => {
     item.remove();
   });
+  clearTimeout(t);
   shuffle(randomArray);
   faceUpCards = [];
   startBTN.addEventListener("click", startHandler);
