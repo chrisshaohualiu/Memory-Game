@@ -8,6 +8,8 @@ let startBTN = document.querySelector(".start-btn");
 
 let resetBTN = document.querySelector(".reset-btn");
 
+let playAgainBTN = document.querySelector(".play-again-btn");
+
 // let pauseBTN = document.querySelector(".pause");
 
 function shuffle(a) {
@@ -60,6 +62,9 @@ const handler = (e) => {
           faceUpCards = [];
           let outDivs = document.querySelectorAll(".out");
           if (outDivs.length === 16) {
+            let endTimeDiv = document.querySelector(".end-time");
+            let timerDiv = document.querySelector(".timer");
+            endTimeDiv.innerText = `Beat in ${timerDiv.innerText}`;
             endScreenDiv.classList.remove("hide");
             clearTimeout(t);
           }
@@ -121,17 +126,23 @@ let startHandler = () => {
 
 startBTN.addEventListener("click", startHandler);
 
-resetBTN.addEventListener("click", () => {
+const reset = () => {
   let rowDivs = document.querySelectorAll(".row");
   rowDivs.forEach((item) => {
     item.remove();
   });
+  secondsLabel.innerHTML = "00";
+  minutesLabel.innerHTML = "00";
   endScreenDiv.classList.add("hide");
   clearTimeout(t);
   shuffle(randomArray);
   faceUpCards = [];
   startBTN.addEventListener("click", startHandler);
-});
+};
+
+resetBTN.addEventListener("click", reset);
+
+playAgainBTN.addEventListener("click", reset);
 
 console.log(gameBoardDiv);
 

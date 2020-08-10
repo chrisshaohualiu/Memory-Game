@@ -53,7 +53,7 @@ h2 {
   text-align: center;
   background-color: transparent;
   perspective: 1000px;
-  transition: transform 0.8s;
+  transition: transform 0.3s;
   transform-style: preserve-3d;
 }
 
@@ -84,10 +84,6 @@ h2 {
 .timer {
   font-size: 20px;
   margin: 50px;
-  /* top: 5px;
-	left: 50%;
-	transform: translateX(-50%);
-	position: fixed; */
 }
 
 .front {
@@ -114,7 +110,8 @@ h2 {
 }
 
 .start-btn,
-.reset-btn {
+.reset-btn,
+.play-again-btn {
   font-size: 20px;
   padding: 10px;
   margin: 15px;
