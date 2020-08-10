@@ -1,5 +1,7 @@
 "use strict";
 
+let endScreenDiv = document.querySelector(".end-screen");
+
 let gameBoardDiv = document.querySelector(".game-board");
 
 let startBTN = document.querySelector(".start-btn");
@@ -58,6 +60,7 @@ const handler = (e) => {
           faceUpCards = [];
           let outDivs = document.querySelectorAll(".out");
           if (outDivs.length === 16) {
+            endScreenDiv.classList.remove("hide");
             clearTimeout(t);
           }
         }, 1000);
@@ -123,6 +126,7 @@ resetBTN.addEventListener("click", () => {
   rowDivs.forEach((item) => {
     item.remove();
   });
+  endScreenDiv.classList.add("hide");
   clearTimeout(t);
   shuffle(randomArray);
   faceUpCards = [];
