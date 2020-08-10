@@ -68,13 +68,13 @@ const handler = (e) => {
             endScreenDiv.classList.remove("hide");
             clearTimeout(t);
           }
-        }, 1000);
+        }, 700);
       } else {
         setTimeout(() => {
           faceUpCards[0].classList.remove("flipped");
           faceUpCards[1].classList.remove("flipped");
           faceUpCards = [];
-        }, 1000);
+        }, 700);
       }
     }
   }
